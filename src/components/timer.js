@@ -16,7 +16,7 @@ function Controller() {
   const interval = useRef();
 
   const { speak } = useSpeechSynthesis();
-  const { listen, listening, stop } = useSpeechRecognition({
+  const { listen, listening, stop, supported } = useSpeechRecognition({
     onResult: result => {
       setValue(result);
     },
@@ -154,8 +154,10 @@ function Controller() {
           listen={listen}
           stop={stop}
           listening={listening}
+          supported={supported}
         />
       </div>
+      {!supported && <div>Voice controls not supported by your browser</div>}
       <div style = {{ opacity: listening ? 1 : 0 }}>Say "Start", "Pause", "Stop" or "Reset" to control the timer. </div>
     </div>
 
