@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen&display=swap');
+$primary: #3DDC97;
+$dark: #231F20;
+$light: #E5E5E5;
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  background-color: $light;
+  color: $dark;
+  font-family: Oxygen;
+}
+.container {
+  height: 100%;
+  padding: 2em;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .progress-bar {
+    flex: 1;
+    padding-top: 1em;
+  }
+
+  .controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      background-color: $primary;
+    }
+
+    .timer-background {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .countdown-time {
+      font-size: 2em;
+      display: flex;
+
+      .countdown-segment {
+        width: 60px;
+        text-align: center;
+        border-radius: 4px;
+        padding: 0.2em;
+        color: $dark;
+        margin: 0.2em;
+      }
+    }
+
+    .countdown-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .countdown-buttons:not(:first-of-type) {
+      margin-bottom: 1.4em;
+    }
+
+    .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
+  }
+}
