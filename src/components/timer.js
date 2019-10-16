@@ -156,7 +156,7 @@ function Controller() {
           listening={listening}
         />
       </div>
-      <div style = {{ opacity: listening ? 1 : 0 }}>Say "Start", "Pauze", "Stop" or "Reset" to control the timer. </div>
+      <div style = {{ opacity: listening ? 1 : 0 }}>Say "Start", "Pause", "Stop" or "Reset" to control the timer. </div>
     </div>
 
   );
