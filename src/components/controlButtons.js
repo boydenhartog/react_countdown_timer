@@ -13,7 +13,8 @@ export default function ControlButtons({
   resetTimer,
   listen,
   stop,
-  listening
+  listening,
+  supported
 }) {
   const { speak } = useSpeechSynthesis();
 
@@ -54,6 +55,7 @@ export default function ControlButtons({
       </button>
       {!listening && <button
         className="button is-primary control-button"
+        disabled={!supported}
         onClick={() => {
           listen();
           speak({ text: 'I\'m listening' });
