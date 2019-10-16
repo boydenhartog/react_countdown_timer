@@ -43,7 +43,7 @@ export default function ControlButtons({
       </button>
       <button
         className="button is-primary control-button"
-        onClick={() => { resetTimer(); speak({ text: 'I\'ve reset the timer' })}}
+        onClick={() => { resetTimer(); speak({ text: 'Reset the timer' })}}
         disabled={!resetEnabled}
       >
         <FontAwesomeIcon

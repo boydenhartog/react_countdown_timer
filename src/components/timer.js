@@ -12,7 +12,6 @@ function Controller() {
   const [timerStart, setTimerStart] = useState(0);
   const [timerTime, setTimerTime] = useState(0);
   const [initialTime, setInitialTime] = useState(0);
-  const [voiceOn, setVoiceOn] = useState(false);
   const [value, setValue] = useState("");
   const interval = useRef();
 
@@ -46,14 +45,35 @@ function Controller() {
   }, [timerTime, timerOn, speak]);
 
   useEffect(() => {
-    if (value && value.includes('stop' || 'pause')) {
-      speak({ text: 'Ok.' });
+    if (value && stopEnabled && value.includes('stop' || 'pause')) {
+      speak({ text: 'Pausing.' });
       setValue('');
       stopTimer();
       stop();
     }
-  }, [speak, value, stop]);
+  }, [speak, value, stop, stopEnabled]);
 
+  useEffect(() => {
+    if (value && resetEnabled && value.includes('reset')) {
+      speak({ text: 'Reset timer' });
+      setValue('');
+      resetTimer();
+      stop();
+    }
+  }, [speak, value, resetTimer, stop, resetEnabled]);
+
+  useEffect(() => {
+    if (value && startEnabled && value.includes('start')) {
+      speak({ text: 'Starting' });
+      setValue('');
+      startTimer();
+      stop();
+    }
+
+  }, [speak, value, stop, startTimer, startEnabled]);
+
+  // Used in effect and for buttons
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function startTimer() {
     setTimerTime(timerTime);
     setTimerStart(timerTime);
@@ -68,6 +88,8 @@ function Controller() {
     setTimerOn(false);
   }
 
+  // Used in effect and for buttons
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function resetTimer() {
     if (!timerOn) {
       setTimerTime(0);
@@ -131,11 +153,10 @@ function Controller() {
           resetEnabled={resetEnabled}
           listen={listen}
           stop={stop}
-          voiceOn={voiceOn}
+          listening={listening}
         />
-
-        {listening && <div>Say "stop" to pause the timer. </div>}
       </div>
+      <div style = {{ opacity: listening ? 1 : 0 }}>Say "Start", "Pauze", "Stop" or "Reset" to control the timer. </div>
     </div>
 
   );
